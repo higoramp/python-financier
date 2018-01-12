@@ -18,7 +18,7 @@ USAGE
 ```js
 from pythonfinancier.financier import Financier
 
-f= Financier('https://app.financier.io/db/', EMAIL, PASSWORD)
+f = Financier('https://app.financier.io/db/', EMAIL, PASSWORD)
 
 f.connect_budget('Personal')
 
@@ -30,14 +30,14 @@ Notes:
 - If payee doesn't exists, it will create a new one.
 - That script will use the suggest_category on payee, so will automatically import transactions using the previously category set for thath payee
 
-FINDING ALL ACCOUNTS AVAILABLE
+FINDING ALL BUDGETS AVAILABLE
 ----------------
 
 
 ```js
 from pythonfinancier.financier import Financier
 
-f= Financier('https://app.financier.io/db/', EMAIL, PASSWORD)
+f = Financier('https://app.financier.io/db/', EMAIL, PASSWORD)
 
 print(f.get_all_budgets())
 
