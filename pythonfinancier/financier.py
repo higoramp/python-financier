@@ -1,4 +1,5 @@
-from pythonfinancier.easycouchdb import EasyCouchdb
+#from pythonfinancier.easycouchdb import EasyCouchdb
+from easycouchdb import EasyCouchdb
 import uuid
 
 class Financier:

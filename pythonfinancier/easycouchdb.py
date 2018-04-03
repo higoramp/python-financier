@@ -1,5 +1,9 @@
 import requests
-from urllib.parse import urljoin, urlunsplit
+#from urllib.parse import urljoin, urlunsplit
+try:
+    from urllib.parse import urljoin, urlunsplit
+except ImportError:
+     from urlparse import urljoin, urlunsplit
 from time import sleep
 from requests.adapters import HTTPAdapter
 
