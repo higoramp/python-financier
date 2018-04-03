@@ -32,6 +32,9 @@ class Financier:
 		selector={'_id': {'$regex':'^{0}_account_'.format(self.budget_selector)}}
 		return self.cdb.query(self.userdb, {'selector': selector, 'fields':['_id', 'name']}).json()['docs']
 
+	def get_all_transactions(self):
+		selector={'_id': {'$regex':'^{0}_transaction_'.format(self.budget_selector)}}
+		return self.cdb.query(self.userdb, {'selector': selector}).json()['docs']
 
 	def save_transaction(self, account_name, id, value, date, payee_name, memo):
 		#getting account
@@ -52,7 +55,7 @@ class Financier:
 			self.payee_map[payee_name]=payee
 
 
-		id_transaction= self.get_id_transacion(id)
+		id_transaction= self.get_id_transaction(id)
 		tr= self.get_transaction(id_transaction)
 
 		if not tr or not '_id' in tr:
@@ -74,7 +77,7 @@ class Financier:
 	def get_transaction(self, id_transaction):
 		return self.cdb.get_doc(self.userdb, id_transaction).json()
 
-	def get_id_transacion(self, id):
+	def get_id_transaction(self, id):
 		return '{0}_transaction_{1}'.format(self.budget_selector, id)
 
 	def find_budget(self, name):
