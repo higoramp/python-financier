@@ -38,10 +38,19 @@ class Financier:
 		return self._get_all_x('account',fields=['_id', 'name'])
 
 	def get_all_transactions(self):
-		return self._get_all_x(self,'transaction')
+		return self._get_all_x('transaction')
 
 	def get_all_payees(self):
-		return self._get_all_x(self,'payee')
+		return self._get_all_x('payee')
+
+	def get_all_master_categories(self):
+		return self._get_all_x('master-category')
+
+	def get_all_categories(self):
+		return self._get_all_x('category')
+
+	def get_all_month_categories(self):
+		return self._get_all_x('m_category')
 
 	def save_transaction(self, account_name, id, value, date, payee_name, memo):
 		#getting account
