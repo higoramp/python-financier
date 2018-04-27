@@ -19,7 +19,6 @@ class Financier:
 	def get_all_budgets(self):
 		return self.cdb.query(self.userdb, {'selector':{'_id':{'$regex':'^budget_'}}, 'fields':['_id', 'name']}).json()['docs']
 
-
 	def connect_budget(self, name):
 		budget=self.find_budget(name)
 		if budget:
@@ -28,13 +27,21 @@ class Financier:
 		else:
 			raise Exception('Budget not found')
 
+	def _get_all_x(self, doc_type, fields=None):
+		selector={'_id': {'$regex':'^{0}_{1}_'.format(self.budget_selector, doc_type)}}
+		query_body = {'selector': selector}
+		if fields is not None:
+			query_body['fields']=fields
+		return self.cdb.query(self.userdb, query_body).json()['docs']
+
 	def get_all_accounts(self):
-		selector={'_id': {'$regex':'^{0}_account_'.format(self.budget_selector)}}
-		return self.cdb.query(self.userdb, {'selector': selector, 'fields':['_id', 'name']}).json()['docs']
+		return self._get_all_x('account',fields=['_id', 'name'])
 
 	def get_all_transactions(self):
-		selector={'_id': {'$regex':'^{0}_transaction_'.format(self.budget_selector)}}
-		return self.cdb.query(self.userdb, {'selector': selector}).json()['docs']
+		return self._get_all_x(self,'transaction')
+
+	def get_all_payees(self):
+		return self._get_all_x(self,'payee')
 
 	def save_transaction(self, account_name, id, value, date, payee_name, memo):
 		#getting account
