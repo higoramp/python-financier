@@ -4,5 +4,3 @@ nubanksync.py
 __pycache__
 dist/
 build/
-
-pythonfinancier/testscript.py
