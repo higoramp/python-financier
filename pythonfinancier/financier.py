@@ -3,8 +3,6 @@ import uuid
 
 class Financier:
 
-	selector = {}
-
 	def __init__(self, urlcouchdb, username, password):
 		self.cdb = EasyCouchdb(urlcouchdb)
 		print(self.cdb.login(username, password).json())
