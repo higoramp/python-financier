@@ -117,3 +117,4 @@ class Financier:
 			ret= self.insert_payee(name)
 			ret['_id']=ret['id']
 			return ret
+
