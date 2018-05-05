@@ -1,5 +1,8 @@
 import requests
-from urllib.parse import urljoin, urlunsplit
+try:
+    from urllib.parse import urljoin, urlunsplit
+except ImportError:
+     from urlparse import urljoin, urlunsplit
 from time import sleep
 from requests.adapters import HTTPAdapter
 
@@ -13,13 +16,11 @@ class EasyCouchdb:
 
 	req_session = None
 
-
 	def __init__(self, url):
 		self.url=url
 		self.SESSION_URL= urljoin(self.url, self.SESSION)
 		self.ALLDBS_URL = urljoin(self.url, self.ALLDBS)
 		print(self.SESSION_URL)
-
 
 	def login(self, username, password):
 		self.req_session=requests.session()
@@ -48,5 +49,3 @@ class EasyCouchdb:
 	def get_doc(self, dbname, id):
 		sleep(0.5)
 		return self.req_session.get(urljoin(self.url, '/'.join([dbname,id])), timeout=self.TIMEOUT)
-
-
