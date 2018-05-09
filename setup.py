@@ -1,7 +1,7 @@
 from distutils.core import setup
-setup(name='financier',
-      version='0.0.0',
-      packages=['financier'],
+setup(name='python-financier',
+      version='1.0.0',
+      packages=['pythonfinancier'],
       install_requires=[
             'requests'
       ]

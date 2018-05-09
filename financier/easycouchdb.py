@@ -49,3 +49,4 @@ class EasyCouchdb:
 	def get_doc(self, dbname, id):
 		sleep(0.5)
 		return self.req_session.get(urljoin(self.url, '/'.join([dbname,id])), timeout=self.TIMEOUT)
+
