@@ -24,7 +24,7 @@ class Financier:
 		else:
 			raise Exception('Budget not found')
 
-	def _get_all_x(self, doc_type, fields=None):
+	def get_all_x(self, doc_type, fields=None):
 		selector={'_id': {'$regex':'^{0}_{1}_'.format(self.budget_selector, doc_type)}}
 		query_body = {'selector': selector}
 		if fields is not None:
@@ -32,22 +32,22 @@ class Financier:
 		return self.cdb.query(self.userdb, query_body).json()['docs']
 
 	def get_all_accounts(self):
-		return self._get_all_x('account',fields=['_id', 'name'])
+		return self.get_all_x('account',fields=['_id', 'name'])
 
 	def get_all_transactions(self):
-		return self._get_all_x('transaction')
+		return self.get_all_x('transaction')
 
 	def get_all_payees(self):
-		return self._get_all_x('payee')
+		return self.get_all_x('payee')
 
 	def get_all_master_categories(self):
-		return self._get_all_x('master-category')
+		return self.get_all_x('master-category')
 
 	def get_all_categories(self):
-		return self._get_all_x('category')
+		return self.get_all_x('category')
 
 	def get_all_month_categories(self):
-		return self._get_all_x('m_category')
+		return self.get_all_x('m_category')
 
 	def save_transaction(self, account_name, id, value, date, payee_name, memo):
 		#getting account
