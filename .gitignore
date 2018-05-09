@@ -1,6 +1,9 @@
-importernubank.py
 testfinancier.py
+importernubank.py
 nubanksync.py
 __pycache__
 dist/
 build/
+
+**/*.pyc
+.vscode
