@@ -2,4 +2,4 @@ CouchDB==1.1
 python-dateutil==2.6.1
 requests==2.18.1
 six==1.11.0
-urllib3==1.21.1
+urllib3==1.26.5
